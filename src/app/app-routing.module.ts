@@ -5,6 +5,14 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
+  },
+  {
+    path: 'modificar-foto/:id',
+    loadChildren: () => import('./modificar-foto/modificar-foto.module').then( m => m.ModificarFotoPageModule)
+  },
+  {
+    path: 'agregar-foto',
+    loadChildren: () => import('./agregar-foto/agregar-foto.module').then( m => m.AgregarFotoPageModule)
   }
 ];
 @NgModule({
