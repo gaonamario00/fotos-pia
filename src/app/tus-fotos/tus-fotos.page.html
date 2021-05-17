@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="tertiary">
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -7,53 +7,42 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <!-- <ion-list lines="full">
-    <form [formGroup]="imgForm" (ngSubmit)="send()">
-      <ion-item>
-        <ion-label position="floating">titulo</ion-label>
-        <ion-input formControlName="titulo" type="text" required></ion-input>
-      </ion-item>
-
-      <ion-item>
-        <ion-label position="floating">Descripcion:</ion-label>
-        <ion-input formControlName="descrip" type="text" required>
-        </ion-input>
-      </ion-item>
-
-      <ion-row>
-        <ion-col>
-          <ion-button type="submit" color="tertiary" shape="full" expand="block">
-            Agregar a mis fotos
-          </ion-button>
-        </ion-col>
-      </ion-row>
-    </form>
-
-    <ion-button (click)="takeFoto()" color="tertiary" shape="full" expan d="block">
-    Tomar Foto
-    </ion-button>
-  </ion-list>
--->
-   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+<ion-content class="colorcito">
+   <ion-fab vertical="top" horizontal="end" slot="fixed">
     <ion-fab-button (click)="goToAdd()" color="light">
-      <ion-icon name="archive"></ion-icon>
+      <ion-icon color="tertiary" name="camera"></ion-icon>
     </ion-fab-button>
   </ion-fab>
 <ion-list>
-  <ion-item lines="inset" *ngFor="let data of Data" >
-    <ion-label>
-      <h5>Titulo: {{data.titulo}}</h5>
-      <p>Descripción: {{data.descrip}}</p>
-      <img src="{{data.imagen}}">
-      <p>Fecha: {{data.fecha}}</p>
-    </ion-label>
+  <ion-card lines="inset" *ngFor="let data of Data" >
+
+    <ion-card-header>
+    <ion-card-title>{{data.titulo}}</ion-card-title>
+    <ion-card-subtitle>{{data.descrip}}</ion-card-subtitle>
+    <div class="item-note" item-end>
+    <!-- <ion-fab-button (click)="deleteFoto(data.id)" vertical="bottom" horizontal="end" class="relativo">
+      <ion-icon size="mini" name="close-circle" style="zoom:2.0" ></ion-icon>
+    </ion-fab-button> -->
+    </div>
+    </ion-card-header>
+
+    <ion-img src="{{data.imagen}}"></ion-img>
 
     <div class="item-note" item-end>
-      <!-- <ion-icon name="create" style="zoom:2.0" ></ion-icon> -->
-      <ion-icon name="flame" style="zoom:2.0" (click)="deleteFoto(data.id)"></ion-icon>
+      <ion-icon name="close-circle" style="zoom:2.0" (click)="deleteFoto(data.id)"></ion-icon>
     </div>
+
+    <ion-card-content>
+    <p>{{data.fecha}}</p>
+    </ion-card-content>
+
+
+
+
+
     <!-- [routerLink]="['/modificar-foto/', data.id]" -->
-  </ion-item>
+  </ion-card>
 </ion-list>
 </ion-content>
+
+

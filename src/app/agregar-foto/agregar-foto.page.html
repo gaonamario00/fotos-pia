@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-item color="tertiary">
+  <ion-toolbar color="tertiary">
+    <ion-item>
       <ion-buttons>
         <ion-back-button defaultHref="/"></ion-back-button>
       </ion-buttons>
@@ -11,10 +11,12 @@
 </ion-header>
 
 <ion-content>
+  <img src="{{previsualizacion}}">
+
   <ion-list lines="full">
     <form [formGroup]="imgForm" (ngSubmit)="send()">
       <ion-item>
-        <ion-label position="floating">titulo</ion-label>
+        <ion-label position="floating">Titulo</ion-label>
         <ion-input formControlName="titulo" type="text" required></ion-input>
       </ion-item>
 
@@ -33,8 +35,8 @@
       </ion-row>
     </form>
 
-    <!-- <ion-button (click)="takeFoto()" color="tertiary" shape="full" expan d="block">
+    <ion-button (click)="takePhoto()" color="tertiary" shape="full" expand="block">
     Tomar Foto
-    </ion-button> -->
+    </ion-button>
   </ion-list>
 </ion-content>

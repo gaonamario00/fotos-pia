@@ -1,7 +1,8 @@
 {
   "name": "PIA_APPS",
   "integrations": {
-    "cordova": {}
+    "cordova": {},
+    "capacitor": {}
   },
   "type": "angular"
 }
