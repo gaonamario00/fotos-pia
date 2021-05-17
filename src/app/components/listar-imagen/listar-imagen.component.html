@@ -1,0 +1,55 @@
+<ion-spinner *ngIf="loading"></ion-spinner>
+
+<ion-grid *ngIf="textoRelleno" class="ion-text-center" id="container">
+  <ion-label>🔎¡Haz una busqueda!🔍</ion-label>
+
+  <ion-img src="https://i.pinimg.com/originals/25/48/19/254819622e6fd49afb970451be88e8d0.gif"
+            style="margin: 6em">
+  </ion-img>
+</ion-grid>
+
+<ion-grid *ngIf="!loading">
+
+<ion-card *ngFor="let imagen of listImagenes" >
+  <ion-img [src]="imagen.previewURL"></ion-img>
+  <ion-card-header>
+    <ion-card-title>Foto subida por {{ imagen.user }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        <ion-col class="ion-text-center">
+          Likes
+        </ion-col>
+        <ion-col class="ion-text-center">
+          Vistas
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col class="ion-text-center">
+          {{ imagen.likes }}
+        </ion-col>
+        <ion-col class="ion-text-center">
+          {{ imagen.views}}
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+    <ion-button [href]="imagen.largeImageURL" target="_blank"
+                color="tertiary" fill="outline" expand="block">
+      Ver imagen completa
+    </ion-button>
+
+
+  </ion-card-content>
+
+</ion-card>
+
+<ion-grid>
+  <ion-row style="display: flex;  justify-content: center;" *ngIf="listImagenes.length > 0">
+
+    <ion-button (click)="paginaAnterior()" *ngIf="paginaAnteriorClass()" color="tertiary"> << Anterior </ion-button>
+
+    <ion-button (click)="paginaSiguiente()" *ngIf="paginaSiguienteClass()" color="tertiary"> Siguiente >> </ion-button>
+
+  </ion-row>
+</ion-grid>

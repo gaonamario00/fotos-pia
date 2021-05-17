@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true" >
   <ion-toolbar color="tertiary">
     <ion-item>
       <ion-buttons>
@@ -11,7 +11,11 @@
 </ion-header>
 
 <ion-content>
-  <img src="{{previsualizacion}}">
+  <ion-grid>
+    <ion-img src="{{previsualizacion}}" style="margin: 6em"></ion-img>
+    <!-- <img src="{{previsualizacion}}" style="align-items: center"> -->
+  </ion-grid>
+
 
   <ion-list lines="full">
     <form [formGroup]="imgForm" (ngSubmit)="send()">
@@ -28,15 +32,18 @@
 
       <ion-row>
         <ion-col>
-          <ion-button type="submit" color="tertiary" shape="full" expand="block">
+          <ion-button type="submit" color="tertiary" shape="full" expand="block" [disabled]="!imgForm.valid" style="margin-top:2em;">
             Agregar a mis fotos
           </ion-button>
         </ion-col>
       </ion-row>
     </form>
 
-    <ion-button (click)="takePhoto()" color="tertiary" shape="full" expand="block">
-    Tomar Foto
+    <ion-row style="display: flex;  justify-content: center;">
+    <ion-button (click)="takePhoto()"  style="margin-top:2em;"  color="tertiary">
+      <ion-icon name="camera"></ion-icon>
     </ion-button>
+  </ion-row>
+
   </ion-list>
 </ion-content>

@@ -6,6 +6,10 @@ import { FormsModule } from '@angular/forms';
 import { Tab2Page } from './tab2.page';
 
 import { Tab2PageRoutingModule } from './tab2-routing.module';
+import { ErrorComponent } from '../shared/error/error.component';
+import { NavbarComponent } from '../components/navbar/navbar.component';
+import { ListarImagenComponent } from '../components/listar-imagen/listar-imagen.component';
+import { BuscarImagenComponent } from '../components/buscar-imagen/buscar-imagen.component';
 
 @NgModule({
   imports: [
@@ -14,6 +18,12 @@ import { Tab2PageRoutingModule } from './tab2-routing.module';
     FormsModule,
     Tab2PageRoutingModule
   ],
-  declarations: [Tab2Page]
+  declarations: [
+    Tab2Page,
+    ErrorComponent,
+    NavbarComponent,
+    ListarImagenComponent,
+    BuscarImagenComponent,
+  ]
 })
 export class Tab2PageModule {}

@@ -1,0 +1,12 @@
+ <form (ngSubmit)="buscarImagenes()">
+  <ion-item>
+    <ion-input clearInput placeholder="Busca una imagen"
+                [(ngModel)]="nombreImagen" name="img" required>
+    </ion-input>
+    <ion-button type="submit" color="tertiary" fill="outline">
+      <ion-icon name="search"></ion-icon>
+    </ion-button>
+  </ion-item>
+</form>
+
+

@@ -1,16 +1,16 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Tab 2
-    </ion-title>
-  </ion-toolbar>
+<ion-header>
+  <app-navbar [titulo]="'Buscador de imagenes'"></app-navbar>
 </ion-header>
+<ion-content>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 2</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-grid>
+    <app-error></app-error>
 
+    <app-buscar-imagen></app-buscar-imagen>
+</ion-grid>
+
+  <ion-grid>
+
+    <app-listar-imagen></app-listar-imagen>
+  </ion-grid>
 </ion-content>

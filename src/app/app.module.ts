@@ -12,9 +12,21 @@ import { AppComponent } from './app.component';
 import { SQLite } from '@ionic-native/sqlite/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { ErrorComponent } from './shared/error/error.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+// import { ListarImagenComponent } from './components/listar-imagen/listar-imagen.component';
+// import { BuscarImagenComponent } from './components/buscar-imagen/buscar-imagen.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [
+    AppComponent,
+    // BuscarImagenComponent,
+    // ListarImagenComponent,
+    NavbarComponent,
+    ErrorComponent,
+    SpinnerComponent
+  ],
   entryComponents: [],
   imports: [
     BrowserModule,
