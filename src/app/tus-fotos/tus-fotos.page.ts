@@ -24,7 +24,7 @@ export class TusFotosPage implements OnInit {
   Data: any[] = [];
 
   // imagenes: Foto[] = [];
-  isLoading = false;
+  isEmpty = true;
   previsualizacion: string;
 
   ngOnInit() {
@@ -32,6 +32,7 @@ export class TusFotosPage implements OnInit {
       if (res) {
         this.fotoService.fetchFotos().subscribe((item) => {
           this.Data = item;
+          this.isEmpty = false;
         });
       }
     });

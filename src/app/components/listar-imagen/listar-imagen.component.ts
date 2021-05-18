@@ -19,7 +19,7 @@ export class ListarImagenComponent implements OnInit {
 
   textoRelleno = true;
 
-  constructor(private _imagenService: ImagenService) { 
+  constructor(private _imagenService: ImagenService) {
     this.suscription = this._imagenService.getTerminoBusqueda().subscribe(data => {
       this.termino = data;
       this.paginaActual = 1;
@@ -35,7 +35,7 @@ export class ListarImagenComponent implements OnInit {
       console.log(data);
       this.loading = false;
       this.textoRelleno = false;
-      
+
 
       if(data.hits.length === 0) {
         this._imagenService.setError('No se encontró ningún resultado');

@@ -14,18 +14,19 @@ export class AgregarFotoPage implements OnInit {
   opctions: any = { weekday: 'long', month:'long', day: 'numeric',hour:'numeric',minute:'numeric'};
 
   imgForm: FormGroup;
-
+  IsThereAPhoto: boolean = false;
   constructor(
     private fotoService: FotoService,
     private router: Router,
     public formBuilder: FormBuilder,
     private toast: ToastController,
-    private cameraService: CameraService
+    private cameraService: CameraService,
+
    )
   {}
 
   Data: any[] = [];
-
+  isEmpty: boolean = true;
   // imagenes: Foto[] = [];
   isLoading = false;
   previsualizacion: string = 'http://www.puntogps.com/images/img-no-disponible.jpg';
@@ -55,22 +56,21 @@ export class AgregarFotoPage implements OnInit {
         this.previsualizacion,
         this.fechaEsp
       )
-      .then((res) => {
-        console.log(res);
-        // this.router.navigate(['/']);
+      .then( async ( res) => {
+        let toast = await this.toast.create({
+          message: 'Imagen agregada con éxito',
+          duration: 2500,
+        });
+        toast.present();
+        this.router.navigate(['/']);
       });
-      this.getBack();
   }
-  getBack() {
-    //con esta función vamos a la ventana de agregar receta,
-    //donde podemos subir una imágen de la receta, su nombre y su preparación
 
-    this.router.navigateByUrl('/');
-  }
 
   async takePhoto(){
     const photo = await this.cameraService.getPhoto()
     this.previsualizacion = 'data:image/jpeg;base64,'+ photo.base64String;
+    this.IsThereAPhoto = true;
   }
 
 }

@@ -1,0 +1,31 @@
+<ion-header [translucent]="true" >
+  <ion-toolbar color="tertiary">
+    <ion-item>
+      <ion-buttons>
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-buttons>
+
+      <ion-title>Imagen Completa</ion-title>
+    </ion-item>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-text-center" >
+  <ion-col  size="12" size-sm="8" offset-sm="2"  text-center>
+  <br>
+  <br>
+  <br>
+    <ion-card-header>
+    <ion-card-title>{{user}}</ion-card-title>
+    <ion-card-subtitle>{{tags}}</ion-card-subtitle>
+    </ion-card-header>
+  <ion-card-content>
+    <!-- <ion-img src="{{img}}"></ion-img> -->
+      <ion-img src="{{img}}" style="margin: 6em" ></ion-img>
+</ion-card-content>
+
+  <ion-button target="_blank" color="tertiary" fill="outline" expand="block" (click)="addToMyPhotos()">
+     Añadir a mis fotos
+  </ion-button>
+</ion-col>
+</ion-content>

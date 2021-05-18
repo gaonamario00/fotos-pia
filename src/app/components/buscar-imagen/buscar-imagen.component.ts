@@ -10,7 +10,7 @@ export class BuscarImagenComponent implements OnInit {
 
   nombreImagen: string;
 
-  constructor(private _imagenService: ImagenService) { 
+  constructor(private _imagenService: ImagenService) {
     this.nombreImagen = ''
   }
 

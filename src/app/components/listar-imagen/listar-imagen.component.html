@@ -3,9 +3,7 @@
 <ion-grid *ngIf="textoRelleno" class="ion-text-center" id="container">
   <ion-label>🔎¡Haz una busqueda!🔍</ion-label>
 
-  <ion-img src="https://i.pinimg.com/originals/25/48/19/254819622e6fd49afb970451be88e8d0.gif"
-            style="margin: 6em">
-  </ion-img>
+  <ion-img src="https://i.pinimg.com/originals/25/48/19/254819622e6fd49afb970451be88e8d0.gif" style="margin: 6em"></ion-img>
 </ion-grid>
 
 <ion-grid *ngIf="!loading">
@@ -34,11 +32,11 @@
         </ion-col>
       </ion-row>
     </ion-grid>
-    <ion-button [href]="imagen.largeImageURL" target="_blank"
+    <ion-button [routerLink]="['/imagen-completa/', imagen.largeImageURL,imagen.tags,imagen.user]" target="_blank"
                 color="tertiary" fill="outline" expand="block">
       Ver imagen completa
     </ion-button>
-
+<!-- imagen.largeImageURL ss -->
 
   </ion-card-content>
 

@@ -8,33 +8,41 @@
 </ion-header>
 
 <ion-content class="colorcito">
-<ion-list>
-  <ion-card lines="inset" *ngFor="let data of Data" >
 
-    <ion-card-header>
+<ion-grid *ngIf="isEmpty" class="ion-text-center" id="container">
+  <ion-label>Aun no has agregado ninguna foto</ion-label>
+
+  <ion-img src="https://media1.tenor.com/images/9a611bc544bcd55889ea6389082a0f33/tenor.gif" style="margin: 6em">
+  </ion-img>
+</ion-grid>
+
+<ion-list>
+  <ion-item lines="inset" *ngFor="let data of Data" >
+    <ion-item-sliding>
+    <ion-item>
     <ion-card-title>{{data.titulo}}</ion-card-title>
     <ion-card-subtitle>{{data.descrip}}</ion-card-subtitle>
-    <div class="item-note" item-end>
-    <!-- <ion-fab-button (click)="deleteFoto(data.id)" vertical="bottom" horizontal="end" class="relativo">
-      <ion-icon size="mini" name="close-circle" style="zoom:2.0" ></ion-icon>
-    </ion-fab-button> -->
-    </div>
-    </ion-card-header>
+    <ion-img src="{{data.imagen}}"></ion-img>
 
 
     <!-- <div class="item-note" item-end>
     </div> -->
 
-    <ion-item>
-      <ion-img src="{{data.imagen}}"></ion-img>
-      <ion-icon name="close-circle" style="zoom:2.0" (click)="deleteFoto(data.id)" slot="end"></ion-icon>
-    </ion-item>
-
     <ion-card-content>
     <p>{{data.fecha}}</p>
+
+    <ion-item-options>
+      <ion-item-option>
+      <ion-icon slot="icon-only"  color="danger" name="close-circle" style="zoom:2.0" (click)="deleteFoto(data.id)"></ion-icon>
+      </ion-item-option>
+    </ion-item-options>
+
     </ion-card-content>
+  </ion-item>
     <!-- [routerLink]="['/modificar-foto/', data.id]" -->
-  </ion-card>
+  </ion-item-sliding>
+
+  </ion-item>
 </ion-list>
 <ion-fab vertical="bottom" horizontal="end" slot="fixed">
   <ion-fab-button (click)="goToAdd()" color="light">

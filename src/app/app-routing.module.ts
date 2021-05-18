@@ -13,7 +13,13 @@ const routes: Routes = [
   {
     path: 'agregar-foto',
     loadChildren: () => import('./agregar-foto/agregar-foto.module').then( m => m.AgregarFotoPageModule)
-  }
+  },
+
+  {
+    path: 'imagen-completa/:img/:tags/:user',
+    loadChildren: () => import('./imagen-completa/imagen-completa.module').then( m => m.ImagenCompletaPageModule)
+  },
+
 ];
 @NgModule({
   imports: [

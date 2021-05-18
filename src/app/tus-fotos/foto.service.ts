@@ -76,23 +76,23 @@ export class FotoService {
     });
   }
 
-  getFotoEdit(id:number){
-    return this.storage.executeSql('SELECT * FROM fotos where id='+id, []).then(res => {//where usuario_id = USUARIO_ID
-      let items: Foto[] = [];
-      if (res.rows.length > 0) {
-        for (var i = 0; i < res.rows.length; i++) {
-          items.push({
-            id: res.rows.item(i).id,
-            titulo: res.rows.item(i).titulo,
-            descrip:res.rows.item(i).descrip,
-            imagen: res.rows.item(i).imagen,
-            fecha:res.rows.item(i).fecha
-           });
-        }
-      }
-      this.imagenes.next(items);
-    });
-  }
+  // getFotoEdit(id:number){
+  //   return this.storage.executeSql('SELECT * FROM fotos where id='+id, []).then(res => {//where usuario_id = USUARIO_ID
+  //     let items: Foto[] = [];
+  //     if (res.rows.length > 0) {
+  //       for (var i = 0; i < res.rows.length; i++) {
+  //         items.push({
+  //           id: res.rows.item(i).id,
+  //           titulo: res.rows.item(i).titulo,
+  //           descrip:res.rows.item(i).descrip,
+  //           imagen: res.rows.item(i).imagen,
+  //           fecha:res.rows.item(i).fecha
+  //          });
+  //       }
+  //     }
+  //     this.imagenes.next(items);
+  //   });
+  // }
 
   // Add
   addFoto(titulo, descrip, imagen, fecha) {
