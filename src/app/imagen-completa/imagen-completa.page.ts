@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ToastrService } from 'ngx-toastr';
 import { FotoService } from '../tus-fotos/foto.service';
 
 @Component({
@@ -21,7 +21,7 @@ fechaEsp:any;
   constructor(
     private actRoute: ActivatedRoute,
     private fotoService: FotoService,
-    private toast: ToastController
+    private toastr: ToastrService,
   ) {
     this.img = this.actRoute.snapshot.paramMap.get('img');
     this.tags = this.actRoute.snapshot.paramMap.get('tags');
@@ -35,11 +35,8 @@ fechaEsp:any;
     let fecha = new Date();
     this.fechaEsp = new Date(fecha).toLocaleDateString('es-Mx', this.opctions);
     this.fotoService.addFoto(this.user,this.tags,this.img,this.fechaEsp).then(async (res)=>{
-    let toast = await this.toast.create({
-      message: 'Imagen agregada con éxito',
-      duration: 2500,
-    });
-    toast.present();
+
+    this.toastr.success('Listo!', 'Imagen agregada');
   }
     )
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ToastrService } from 'ngx-toastr';
 import { FotoService } from './foto.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class TusFotosPage implements OnInit {
     private fotoService: FotoService,
     private router: Router,
     public formBuilder: FormBuilder,
-    private toast: ToastController
+    private toastr: ToastrService,
   ) // private cameraService: CameraService,
   {}
 
@@ -68,11 +68,10 @@ export class TusFotosPage implements OnInit {
 
   deleteFoto(id) {
     this.fotoService.deleteFoto(id).then(async (res) => {
-      let toast = await this.toast.create({
-        message: 'Imagen borrada',
-        duration: 2500,
-      });
-      toast.present();
+
+      this.toastr.error('Hecho', 'Imagen eliminada',);
+    }, (err) => {
+
     });
   }
 
@@ -81,3 +80,4 @@ export class TusFotosPage implements OnInit {
   //   this.previsualizacion = 'data:image/jpeg;base64,'+ photo.base64String;
   // }
 }
+

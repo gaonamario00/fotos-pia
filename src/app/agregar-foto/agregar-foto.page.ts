@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { CameraService } from '../camera/camera.service';
 import { FotoService } from '../tus-fotos/foto.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-agregar-foto',
@@ -19,9 +21,8 @@ export class AgregarFotoPage implements OnInit {
     private fotoService: FotoService,
     private router: Router,
     public formBuilder: FormBuilder,
-    private toast: ToastController,
     private cameraService: CameraService,
-
+    private toastr: ToastrService,
    )
   {}
 
@@ -57,12 +58,7 @@ export class AgregarFotoPage implements OnInit {
         this.fechaEsp
       )
       .then( async ( res) => {
-        let toast = await this.toast.create({
-          message: 'Imagen agregada con éxito',
-          duration: 2500,
-        });
-        toast.present();
-        this.router.navigate(['/']);
+        this.toastr.success('Listo!', 'Imagen agregada');
       });
   }
 

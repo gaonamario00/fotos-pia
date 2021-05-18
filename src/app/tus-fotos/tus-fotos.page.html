@@ -7,8 +7,6 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="colorcito">
-
 <ion-grid *ngIf="isEmpty" class="ion-text-center" id="container">
   <ion-label>Aun no has agregado ninguna foto</ion-label>
 
@@ -16,39 +14,38 @@
   </ion-img>
 </ion-grid>
 
-<ion-list>
-  <ion-item lines="inset" *ngFor="let data of Data" >
-    <ion-item-sliding>
-    <ion-item>
-    <ion-card-title>{{data.titulo}}</ion-card-title>
-    <ion-card-subtitle>{{data.descrip}}</ion-card-subtitle>
-    <ion-img src="{{data.imagen}}"></ion-img>
+<ion-content color="white">
 
+ 
+  <ion-item-sliding lines="inset" *ngFor="let data of Data" >
+    <ion-item color="white">
 
-    <!-- <div class="item-note" item-end>
-    </div> -->
+    <ion-label>
+      <h5>Titulo: {{data.titulo}}</h5>
+      <p>Descripción: {{data.descrip}}</p>
+      <img src="{{data.imagen}}">
+      <p>Fecha: {{data.fecha}}</p>
+    </ion-label>
 
-    <ion-card-content>
-    <p>{{data.fecha}}</p>
+  </ion-item >
 
     <ion-item-options>
-      <ion-item-option>
-      <ion-icon slot="icon-only"  color="danger" name="close-circle" style="zoom:2.0" (click)="deleteFoto(data.id)"></ion-icon>
-      </ion-item-option>
+      <ion-item-option color="white"(click)="deleteFoto(data.id)">
+      <!-- <ion-icon name="create" style="zoom:2.0" ></ion-icon> -->
+      <ion-icon color="danger"  name="close-outline" style="zoom:2.0" ></ion-icon>
+    </ion-item-option>
     </ion-item-options>
 
-    </ion-card-content>
-  </ion-item>
     <!-- [routerLink]="['/modificar-foto/', data.id]" -->
   </ion-item-sliding>
 
-  </ion-item>
-</ion-list>
-<ion-fab vertical="bottom" horizontal="end" slot="fixed">
-  <ion-fab-button (click)="goToAdd()" color="light">
-    <ion-icon color="tertiary" name="add"></ion-icon>
-  </ion-fab-button>
-</ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="goToAdd()" color="light">
+      <ion-icon color="tertiary" name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
 </ion-content>
+
 
 
