@@ -28,7 +28,7 @@ export class AgregarFotoPage implements OnInit {
 
   Data: any[] = [];
   isEmpty: boolean = true;
-  // imagenes: Foto[] = [];
+
   isLoading = false;
   previsualizacion: string = 'http://www.puntogps.com/images/img-no-disponible.jpg';
 
@@ -47,7 +47,7 @@ export class AgregarFotoPage implements OnInit {
     });
   }
   fechaEsp: any;
-// horario: new Date (this.myForm.value['horario']).toLocaleDateString('es-Mx', this.opctions)
+
   send() {
     let fecha = new Date();
     this.fechaEsp = new Date(fecha).toLocaleDateString('es-Mx', this.opctions);
@@ -61,7 +61,6 @@ export class AgregarFotoPage implements OnInit {
         this.toastr.success('Listo!', 'Imagen agregada');
       });
   }
-
 
   async takePhoto(){
     const photo = await this.cameraService.getPhoto()

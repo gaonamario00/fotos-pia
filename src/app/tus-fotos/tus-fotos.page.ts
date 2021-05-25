@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FotoService } from './foto.service';
+import { ModalController } from "@ionic/angular";
+import { ImagenModalPage } from "../imagen-modal/imagen-modal.page";
 
 @Component({
   selector: 'app-tus-fotos',
@@ -18,6 +20,7 @@ export class TusFotosPage implements OnInit {
     private router: Router,
     public formBuilder: FormBuilder,
     private toastr: ToastrService,
+    private modalCtrl : ModalController
   ) // private cameraService: CameraService,
   {}
 
@@ -73,6 +76,20 @@ export class TusFotosPage implements OnInit {
     }, (err) => {
 
     });
+  }
+
+  verImagen(img, titulo, descrip,fecha) {
+
+    this.modalCtrl.create({
+      component : ImagenModalPage,
+      componentProps : {
+        imagen : img,
+        titulo: titulo,
+        descripcion:descrip,
+        fecha:fecha,
+      }
+
+    }).then(modal => modal.present())
   }
 
   // async takeFoto(){

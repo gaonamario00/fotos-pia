@@ -16,7 +16,6 @@
     <!-- <img src="{{previsualizacion}}" style="align-items: center"> -->
   </ion-grid>
 
-
   <ion-list lines="full">
     <form [formGroup]="imgForm" (ngSubmit)="send()">
       <ion-item>
@@ -32,7 +31,7 @@
 
       <ion-row>
         <ion-col>
-          <ion-button type="submit" color="tertiary" shape="full" expand="block" [disabled]="!imgForm.valid && IsThereAPhoto" style="margin-top:2em;">
+          <ion-button type="submit" color="tertiary" shape="full" expand="block" [disabled]="!imgForm.valid" style="margin-top:2em;">
             Agregar a mis fotos
           </ion-button>
         </ion-col>

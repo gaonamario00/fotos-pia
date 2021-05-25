@@ -20,6 +20,7 @@ import { ErrorComponent } from './shared/error/error.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 // import { ListarImagenComponent } from './components/listar-imagen/listar-imagen.component';
 // import { BuscarImagenComponent } from './components/buscar-imagen/buscar-imagen.component';
+import { ImagenModalPageModule } from './imagen-modal/imagen-modal.module'
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
       countDuplicates: true,
       resetTimeoutOnDuplicate: true
     }),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ImagenModalPageModule
   ],
   providers: [
     SQLite,

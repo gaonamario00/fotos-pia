@@ -18,7 +18,11 @@ const routes: Routes = [
   {
     path: 'imagen-completa/:img/:tags/:user',
     loadChildren: () => import('./imagen-completa/imagen-completa.module').then( m => m.ImagenCompletaPageModule)
+  },  {
+    path: 'imagen-modal',
+    loadChildren: () => import('./imagen-modal/imagen-modal.module').then( m => m.ImagenModalPageModule)
   },
+
 
 ];
 @NgModule({

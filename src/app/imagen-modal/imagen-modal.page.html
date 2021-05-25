@@ -1,0 +1,14 @@
+
+<ion-content fullscreen>
+
+  <ion-item id="item" class="botones">
+    <ion-button (click)="cerrarModal()" fill="clear"> <!--este boton cierra el modal-->
+      <ion-icon name="close"></ion-icon> <!--icono de tachita-->
+    </ion-button>
+  </ion-item>
+
+  <ion-img src="{{this.imagen}}"></ion-img>
+  <h5>Titulo: {{this.titulo}}</h5>
+  <h5>Descripcion:{{this.descripcion}}</h5>
+  <h5>Fecha: {{this.fecha}}</h5>
+</ion-content>

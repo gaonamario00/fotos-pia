@@ -10,14 +10,52 @@
 <ion-grid *ngIf="isEmpty" class="ion-text-center" id="container">
   <ion-label>Aun no has agregado ninguna foto</ion-label>
 
-  <ion-img src="https://media1.tenor.com/images/9a611bc544bcd55889ea6389082a0f33/tenor.gif" style="margin: 6em">
+  <ion-img
+    src="https://media1.tenor.com/images/9a611bc544bcd55889ea6389082a0f33/tenor.gif"
+    style="margin: 6em"
+  >
   </ion-img>
 </ion-grid>
 
 <ion-content color="white">
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-item-sliding lines="inset" *ngFor="let data of Data">
+          <ion-item color="white">
+            <ion-label>
+              <h5>Titulo: {{data.titulo}}</h5>
+              <p>Descripción: {{data.descrip}}</p>
+              <!-- <img src="{{data.imagen}}" /> -->
+              <img
+                class="galeria"
+                src="{{data.imagen}}"
+                alt=""
+                srcset=""
+                (click)="verImagen(data.imagen, data.titulo,data.descrip,data.fecha)"
+              />
+              <p>Fecha: {{data.fecha}}</p>
+            </ion-label>
+          </ion-item>
 
+          <ion-item-options>
+            <ion-item-option color="white" (click)="deleteFoto(data.id)">
+              <!-- <ion-icon name="create" style="zoom:2.0" ></ion-icon> -->
+              <ion-icon
+                color="danger"
+                name="close-outline"
+                style="zoom: 2"
+              ></ion-icon>
+            </ion-item-option>
+          </ion-item-options>
 
-  <ion-item-sliding lines="inset" *ngFor="let data of Data" >
+          <!-- [routerLink]="['/modificar-foto/', data.id]" -->
+        </ion-item-sliding>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- <ion-item-sliding lines="inset" *ngFor="let data of Data" >
     <ion-item color="white">
 
     <ion-label>
@@ -31,21 +69,17 @@
 
     <ion-item-options>
       <ion-item-option color="white"(click)="deleteFoto(data.id)">
-      <!-- <ion-icon name="create" style="zoom:2.0" ></ion-icon> -->
+       <ion-icon name="create" style="zoom:2.0" ></ion-icon>
       <ion-icon color="danger"  name="close-outline" style="zoom:2.0" ></ion-icon>
     </ion-item-option>
     </ion-item-options>
 
-    <!-- [routerLink]="['/modificar-foto/', data.id]" -->
-  </ion-item-sliding>
+    <!-- [routerLink]="['/modificar-foto/', data.id]"
+  </ion-item-sliding> -->
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="goToAdd()" color="light">
       <ion-icon color="tertiary" name="add"></ion-icon>
     </ion-fab-button>
   </ion-fab>
-
 </ion-content>
-
-
-
