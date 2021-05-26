@@ -1,3 +1,4 @@
+<!-- El header que tiene un botón para regresar a la ventana anterior -->
 <ion-header [translucent]="true" >
   <ion-toolbar color="tertiary">
     <ion-item>
@@ -11,18 +12,19 @@
 </ion-header>
 
 <ion-content>
+  <!-- Carga una imagen "vacía" -->
   <ion-grid>
     <ion-img src="{{previsualizacion}}" style="margin: 6em"></ion-img>
-    <!-- <img src="{{previsualizacion}}" style="align-items: center"> -->
   </ion-grid>
 
   <ion-list lines="full">
+    <!-- form que guarda una imagen en la Base de Datos -->
     <form [formGroup]="imgForm" (ngSubmit)="send()">
       <ion-item>
         <ion-label position="floating">Titulo</ion-label>
         <ion-input formControlName="titulo" type="text" required></ion-input>
       </ion-item>
-
+      <!-- Este es el form para la descripción de la foto -->
       <ion-item>
         <ion-label position="floating">Descripcion:</ion-label>
         <ion-input formControlName="descrip" type="text" required>
@@ -31,6 +33,7 @@
 
       <ion-row>
         <ion-col>
+          <!-- boton que manda la información con send() -->
           <ion-button type="submit" color="tertiary" shape="full" expand="block" [disabled]="!imgForm.valid" style="margin-top:2em;">
             Agregar a mis fotos
           </ion-button>
@@ -38,6 +41,7 @@
       </ion-row>
     </form>
 
+    <!-- este boton abre la cámara para que puedas tomar una foto  -->
     <ion-row style="display: flex;  justify-content: center;">
     <ion-button (click)="takePhoto()"  style="margin-top:2em;"  color="tertiary">
       <ion-icon name="camera"></ion-icon>

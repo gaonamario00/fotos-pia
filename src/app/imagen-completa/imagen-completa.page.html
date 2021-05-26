@@ -20,11 +20,14 @@
       <ion-card-subtitle>{{tags}}</ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <!-- <ion-img src="{{img}}"></ion-img> -->
       <ion-img src="{{img}}" style="margin: 6em"></ion-img>
     </ion-card-content>
-<!--le quite el blank: target="_blank"-->
-    <ion-button color="tertiary" fill="outline" expand="block" (click)="addToMyPhotos()">
+    <ion-button
+      color="tertiary"
+      fill="outline"
+      expand="block"
+      (click)="addToMyPhotos()"
+    >
       Añadir a mis fotos
     </ion-button>
   </ion-col>

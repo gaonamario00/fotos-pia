@@ -10,7 +10,7 @@ const { Camera, Filesystem, Storage } = Plugins;
 @Injectable({
   providedIn: 'root'
 })
-export class CameraService {
+export class CameraService {//función asíncrona que toma la foto desde la cámara del teléfono
   async getPhoto(){
     const capturedPhoto = await Camera.getPhoto({
       resultType:CameraResultType.Base64,

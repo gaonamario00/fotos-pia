@@ -16,7 +16,8 @@ export class BuscarImagenComponent implements OnInit {
 
   ngOnInit() {}
 
-  buscarImagenes() {
+  buscarImagenes() {//busca la imagen
+    //si está vacío, manda error
     if(this.nombreImagen === '') {
       this._imagenService.setError('Agrega un texto de busqueda');
       return;

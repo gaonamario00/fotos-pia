@@ -7,26 +7,30 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-grid *ngIf="isEmpty" class="ion-text-center" id="container">
-  <ion-label>Aun no has agregado ninguna foto</ion-label>
-
-  <ion-img
-    src="https://media1.tenor.com/images/9a611bc544bcd55889ea6389082a0f33/tenor.gif"
-    style="margin: 6em"
-  >
-  </ion-img>
-</ion-grid>
-
 <ion-content color="white">
+  <div  *ngIf="!isEmpty && Data.length<=0" class="ion-text-center">
+    <ion-grid class="ion-text-center" id="container"> <!--si la BD está vacía te manda este mensaje-->
+      <ion-label>Aun no has agregado ninguna foto</ion-label>
+
+      <ion-img
+        src="https://media1.tenor.com/images/9a611bc544bcd55889ea6389082a0f33/tenor.gif"
+        style="margin: 6em"
+        width="600"
+      >
+      </ion-img>
+    </ion-grid>
+  </div>
+
   <ion-grid>
     <ion-row>
       <ion-col>
-        <ion-item-sliding lines="inset" *ngFor="let data of Data">
-          <ion-item color="white">
+        <ion-item-sliding lines="inset" *ngFor="let data of Data"> <!--muestra una tarjeta con la imagen y sus propiedades por cada registro en la Base de Datos-->
+          <ion-item color="white"> <!-- como son sliding, esta parte es el item y la siguiente es el contenido que se muestra
+            cuando le haces slide al item-->
             <ion-label>
               <h5>Titulo: {{data.titulo}}</h5>
               <p>Descripción: {{data.descrip}}</p>
-              <!-- <img src="{{data.imagen}}" /> -->
+
               <img
                 class="galeria"
                 src="{{data.imagen}}"
@@ -34,13 +38,14 @@
                 srcset=""
                 (click)="verImagen(data.imagen, data.titulo,data.descrip,data.fecha)"
               />
+              <!--cuando le das click en una imagen te abre una ventana modal de esa imagen con la función verImagen-->
               <p>Fecha: {{data.fecha}}</p>
             </ion-label>
           </ion-item>
 
-          <ion-item-options>
+          <ion-item-options><!-- opciones que se muestran al arrastrar el item, es el botón de borrar-->
             <ion-item-option color="white" (click)="deleteFoto(data.id)">
-              <!-- <ion-icon name="create" style="zoom:2.0" ></ion-icon> -->
+
               <ion-icon
                 color="danger"
                 name="close-outline"
@@ -49,37 +54,14 @@
             </ion-item-option>
           </ion-item-options>
 
-          <!-- [routerLink]="['/modificar-foto/', data.id]" -->
         </ion-item-sliding>
       </ion-col>
     </ion-row>
   </ion-grid>
-
-  <!-- <ion-item-sliding lines="inset" *ngFor="let data of Data" >
-    <ion-item color="white">
-
-    <ion-label>
-      <h5>Titulo: {{data.titulo}}</h5>
-      <p>Descripción: {{data.descrip}}</p>
-      <img src="{{data.imagen}}">
-      <p>Fecha: {{data.fecha}}</p>
-    </ion-label>
-
-  </ion-item >
-
-    <ion-item-options>
-      <ion-item-option color="white"(click)="deleteFoto(data.id)">
-       <ion-icon name="create" style="zoom:2.0" ></ion-icon>
-      <ion-icon color="danger"  name="close-outline" style="zoom:2.0" ></ion-icon>
-    </ion-item-option>
-    </ion-item-options>
-
-    <!-- [routerLink]="['/modificar-foto/', data.id]"
-  </ion-item-sliding> -->
-
+<!-- floating action button que te abre una ventanita para agregar una nueva imagen desde la cámara-->
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="goToAdd()" color="light">
-      <ion-icon color="tertiary" name="add"></ion-icon>
+      <ion-icon color="tertiary" name="add"></ion-icon> <!-- tiene un icono de + -->
     </ion-fab-button>
   </ion-fab>
 </ion-content>

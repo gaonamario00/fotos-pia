@@ -1,14 +1,14 @@
-<ion-spinner *ngIf="loading"></ion-spinner>
+<ion-spinner *ngIf="loading"></ion-spinner><!--spinner que aparece mientras carga el componente-->
 
 <ion-grid *ngIf="textoRelleno" class="ion-text-center" id="container">
   <ion-label>🔎¡Haz una busqueda!🔍</ion-label>
 
-  <ion-img src="https://i.pinimg.com/originals/25/48/19/254819622e6fd49afb970451be88e8d0.gif" style="margin: 6em"></ion-img>
+  <ion-img src="https://i.pinimg.com/originals/25/48/19/254819622e6fd49afb970451be88e8d0.gif" style="margin: 6em"></ion-img> <!--pinguino-->
 </ion-grid>
 
 <ion-grid *ngIf="!loading">
 
-<ion-card *ngFor="let imagen of listImagenes" >
+<ion-card *ngFor="let imagen of listImagenes" > <!-- For each que despliega en una tarjeta las imágenes y sus atributos-->
   <ion-img [src]="imagen.previewURL"></ion-img>
   <ion-card-header>
     <ion-card-title>Foto subida por {{ imagen.user }}</ion-card-title>
@@ -32,21 +32,21 @@
         </ion-col>
       </ion-row>
     </ion-grid>
+    <!-- boton para ver la imagen en otro componente, donde la podemos guardar en la base de datos-->
     <ion-button [routerLink]="['/imagen-completa/', imagen.largeImageURL,imagen.tags,imagen.user]" target="_blank"
                 color="tertiary" fill="outline" expand="block">
       Ver imagen completa
     </ion-button>
-<!-- imagen.largeImageURL ss -->
 
   </ion-card-content>
 
 </ion-card>
-  
+
 <ion-grid>
   <ion-row style="display: flex;  justify-content: center;" *ngIf="listImagenes.length > 0">
 
     <ion-button (click)="paginaAnterior()" *ngIf="paginaAnteriorClass()" color="tertiary"> << Anterior </ion-button>
-
+    <!-- Aqui vemos dos botones para avanzar y retroceder entre paginas -->
     <ion-button (click)="paginaSiguiente()" *ngIf="paginaSiguienteClass()" color="tertiary"> Siguiente >> </ion-button>
 
   </ion-row>

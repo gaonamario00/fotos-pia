@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { FotoService } from './foto.service';
 import { ModalController } from "@ionic/angular";
 import { ImagenModalPage } from "../imagen-modal/imagen-modal.page";
+import { Foto } from './fotos.model';
 
 @Component({
   selector: 'app-tus-fotos',
@@ -14,71 +15,58 @@ import { ImagenModalPage } from "../imagen-modal/imagen-modal.page";
 export class TusFotosPage implements OnInit {
   id: any;
   imgForm: FormGroup;
+  isEmpty:boolean = false;
 
   constructor(
     private fotoService: FotoService,
-    private router: Router,
+    private router: Router,//para movernos por las rutas, se usa en goToAdd
     public formBuilder: FormBuilder,
     private toastr: ToastrService,
     private modalCtrl : ModalController
-  ) // private cameraService: CameraService,
+  )
   {}
-
-  Data: any[] = [];
-
-  // imagenes: Foto[] = [];
-  isEmpty = true;
+  Data: Foto[] = [];
   previsualizacion: string;
-
+//trae los registros de sqlite
   ngOnInit() {
+    this.isEmpty=true;
     this.fotoService.dbState().subscribe((res) => {
       if (res) {
         this.fotoService.fetchFotos().subscribe((item) => {
           this.Data = item;
-          this.isEmpty = false;
+          this.isEmpty=false;
         });
       }
     });
-
+    //valida el form
     this.imgForm = this.formBuilder.group({
       titulo: [''],
       descrip: [''],
     });
+
+    if(this.Data.length==0){
+      this.isEmpty=true;
+    }else{
+      this.isEmpty=false;
+    }
   }
 
-  send() {
-    let fecha = new Date();
-
-    this.fotoService
-      .addFoto(
-        this.imgForm.value.titulo,
-        this.imgForm.value.descrip,
-        this.previsualizacion,
-        fecha
-      )
-      .then((res) => {
-        console.log(res);
-        // this.router.navigate(['/']);
-      });
-  }
-
+  //te redirige a la pagina de agregar foto
   goToAdd() {
-    //con esta función vamos a la ventana de agregar receta,
-    //donde podemos subir una imágen de la receta, su nombre y su preparación
-
     this.router.navigateByUrl('/agregar-foto');
   }
 
+  //borra la foto
   deleteFoto(id) {
     this.fotoService.deleteFoto(id).then(async (res) => {
 
-      this.toastr.error('Hecho', 'Imagen eliminada',);
+      this.toastr.error('Hecho', 'Imagen eliminada',); //manda una alerta cuandolo borra
     }, (err) => {
 
     });
   }
 
-  verImagen(img, titulo, descrip,fecha) {
+  verImagen(img, titulo, descrip,fecha) { //abre una ventana modal
 
     this.modalCtrl.create({
       component : ImagenModalPage,
@@ -92,9 +80,5 @@ export class TusFotosPage implements OnInit {
     }).then(modal => modal.present())
   }
 
-  // async takeFoto(){
-  //   const photo = await this.cameraService.getPhoto()
-  //   this.previsualizacion = 'data:image/jpeg;base64,'+ photo.base64String;
-  // }
 }
 
