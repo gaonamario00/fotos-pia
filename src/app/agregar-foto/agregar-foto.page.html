@@ -22,19 +22,20 @@
     <form [formGroup]="imgForm" (ngSubmit)="send()">
       <ion-item>
         <ion-label position="floating">Titulo</ion-label>
-        <ion-input formControlName="titulo" type="text" required></ion-input>
+        <ion-input formControlName="titulo" type="text" required minlength="1"></ion-input>
       </ion-item>
       <!-- Este es el form para la descripción de la foto -->
       <ion-item>
         <ion-label position="floating">Descripcion:</ion-label>
-        <ion-input formControlName="descrip" type="text" required>
+        <ion-input formControlName="descrip" type="text" required minlength="1">
         </ion-input>
       </ion-item>
 
       <ion-row>
         <ion-col>
           <!-- boton que manda la información con send() -->
-          <ion-button type="submit" color="tertiary" shape="full" expand="block" [disabled]="!imgForm.valid" style="margin-top:2em;">
+
+          <ion-button type="submit" color="tertiary" shape="full" expand="block" [disabled]="!IsThereAPhoto||!imgForm.valid" style="margin-top:2em;">
             Agregar a mis fotos
           </ion-button>
         </ion-col>

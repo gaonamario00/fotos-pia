@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BuscarImagenComponent implements OnInit {
 
-  nombreImagen: string;
+  nombreImagen: string; //se usa para guardar el nombre de la imagen
 
   constructor(private _imagenService: ImagenService) {
     this.nombreImagen = ''
@@ -23,7 +23,7 @@ export class BuscarImagenComponent implements OnInit {
       return;
     }
 
-    this._imagenService.enviarTerminoBusqueda(this.nombreImagen);
+    this._imagenService.enviarTerminoBusqueda(this.nombreImagen); //envia el input
   }
 
 }

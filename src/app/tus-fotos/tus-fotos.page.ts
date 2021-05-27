@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { FotoService } from './foto.service';
 import { ModalController } from "@ionic/angular";
-import { ImagenModalPage } from "../imagen-modal/imagen-modal.page";
 import { Foto } from './fotos.model';
 
 @Component({
@@ -13,21 +12,21 @@ import { Foto } from './fotos.model';
   styleUrls: ['./tus-fotos.page.scss'],
 })
 export class TusFotosPage implements OnInit {
-  id: any;
-  imgForm: FormGroup;
   isEmpty:boolean = false;
 
   constructor(
-    private fotoService: FotoService,
+    private fotoService: FotoService, //para hacer uso de la base de datos en sqlite
     private router: Router,//para movernos por las rutas, se usa en goToAdd
-    public formBuilder: FormBuilder,
-    private toastr: ToastrService,
-    private modalCtrl : ModalController
+    private toastr: ToastrService, //para mostrar una alerta al agregar y eliminar registros
+    private modalCtrl : ModalController //abre la imagen en una ventana modal
   )
   {}
+
   Data: Foto[] = [];
-  previsualizacion: string;
 //trae los registros de sqlite
+//verifica el estado de la base de datos
+//se suscribe al subject para traer cambios
+//hace Data igual a cada fila de la base de datos
   ngOnInit() {
     this.isEmpty=true;
     this.fotoService.dbState().subscribe((res) => {
@@ -38,12 +37,8 @@ export class TusFotosPage implements OnInit {
         });
       }
     });
-    //valida el form
-    this.imgForm = this.formBuilder.group({
-      titulo: [''],
-      descrip: [''],
-    });
-
+    //verifica si el data esta vacio, para mostrar el mensaje de que
+    //no hay registros que mostrar
     if(this.Data.length==0){
       this.isEmpty=true;
     }else{
@@ -59,26 +54,12 @@ export class TusFotosPage implements OnInit {
   //borra la foto
   deleteFoto(id) {
     this.fotoService.deleteFoto(id).then(async (res) => {
-
       this.toastr.error('Hecho', 'Imagen eliminada',); //manda una alerta cuandolo borra
     }, (err) => {
-
     });
   }
 
-  verImagen(img, titulo, descrip,fecha) { //abre una ventana modal
 
-    this.modalCtrl.create({
-      component : ImagenModalPage,
-      componentProps : {
-        imagen : img,
-        titulo: titulo,
-        descripcion:descrip,
-        fecha:fecha,
-      }
-
-    }).then(modal => modal.present())
-  }
 
 }
 

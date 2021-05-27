@@ -16,19 +16,10 @@ import { SQLite } from '@ionic-native/sqlite/ngx';
 import { HttpClientModule } from '@angular/common/http';
 import { SQLitePorter } from '@ionic-native/sqlite-porter/ngx';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
-import { ErrorComponent } from './shared/error/error.component';
-import { NavbarComponent } from './components/navbar/navbar.component';
-// import { ListarImagenComponent } from './components/listar-imagen/listar-imagen.component';
-// import { BuscarImagenComponent } from './components/buscar-imagen/buscar-imagen.component';
-import { ImagenModalPageModule } from './imagen-modal/imagen-modal.module'
 
 @NgModule({
   declarations: [
     AppComponent,
-    // BuscarImagenComponent,
-    // ListarImagenComponent,
-    NavbarComponent,
-    ErrorComponent,
     SpinnerComponent
   ],
   entryComponents: [],
@@ -47,7 +38,6 @@ import { ImagenModalPageModule } from './imagen-modal/imagen-modal.module'
       resetTimeoutOnDuplicate: true
     }),
     BrowserAnimationsModule,
-    ImagenModalPageModule
   ],
   providers: [
     SQLite,

@@ -1,3 +1,5 @@
+-- crea una tabla en la base de datos si no existe
+
 CREATE TABLE IF NOT EXISTS fotos(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     titulo TEXT,

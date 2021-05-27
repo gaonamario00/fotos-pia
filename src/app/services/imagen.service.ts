@@ -27,7 +27,7 @@ export class ImagenService {
     this.terminoBusqueda$.next(termino);
   }
 
-  //obtiene el termino de busqueda del input y lo guarda en una variable
+  //obtiene el termino de busqueda del input y lo guarda en una variable observable
   getTerminoBusqueda(): Observable<string> {
     return this.terminoBusqueda$.asObservable();
   }

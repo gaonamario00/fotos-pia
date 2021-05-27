@@ -4,17 +4,17 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ImagenModalPageRoutingModule } from './imagen-modal-routing.module';
+import { ImagenDetallePageRoutingModule } from './imagen-detalle-routing.module';
 
-import { ImagenModalPage } from './imagen-modal.page';
+import { ImagenDetallePage } from './imagen-detalle.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    ImagenModalPageRoutingModule
+    ImagenDetallePageRoutingModule
   ],
-  declarations: [ImagenModalPage]
+  declarations: [ImagenDetallePage]
 })
-export class ImagenModalPageModule {}
+export class ImagenDetallePageModule {}

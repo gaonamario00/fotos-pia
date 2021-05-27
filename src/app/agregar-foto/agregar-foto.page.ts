@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastController } from '@ionic/angular';
 import { CameraService } from '../camera/camera.service';
 import { FotoService } from '../tus-fotos/foto.service';
@@ -24,32 +24,30 @@ export class AgregarFotoPage implements OnInit {
     private toastr: ToastrService,//Para el mensaje
    )
   {}
-
-  Data: any[] = [];
   isEmpty: boolean = true;
 
-  isLoading = false;
-  previsualizacion: string = 'http://www.puntogps.com/images/img-no-disponible.jpg'; //imagen que parece un error
 
-  ngOnInit() {
-    this.fotoService.dbState().subscribe((res) => {
-      if (res) {
-        this.fotoService.fetchFotos().subscribe((item) => {
-          this.Data = item;
-        });
-      }
-    });
+  previsualizacion: string = 'src/assets/notfound.jpg'; //imagen que parece un error
 
-    this.imgForm = this.formBuilder.group({//hacemos los campos del form como vacíos
-      titulo: [''],
-      descrip: [''],
+  fechaEsp: string;
+
+   ngOnInit() {
+    this.IsThereAPhoto=false;
+
+    this.imgForm = this.formBuilder.group({// validamos los campos del form
+      titulo: new FormControl("",Validators.compose([
+        Validators.required
+        ])),
+      descrip: new FormControl("",Validators.compose([
+        Validators.required
+      ])),
     });
   }
-  fechaEsp: any;
 
-  send() {//función que manda la imagen a la base de datos
-    let fecha = new Date();
-    this.fechaEsp = new Date(fecha).toLocaleDateString('es-Mx', this.opctions);//para asignarle la fecha actual automáticamente
+  send() {//función que manda el registro a la base de datos
+    let fecha = new Date(); //para asignarle la fecha actual automáticamente
+
+    this.fechaEsp = new Date(fecha).toLocaleDateString('es-Mx', this.opctions);//Castea la fecha a string en español
     this.fotoService.addFoto(
         this.imgForm.value.titulo,
         this.imgForm.value.descrip,
@@ -57,13 +55,13 @@ export class AgregarFotoPage implements OnInit {
         this.fechaEsp
       )
       .then( async ( res) => {
-        this.toastr.success('Listo!', 'Imagen agregada');//ventanita con mensaje
+        this.toastr.success('Listo!', 'Imagen agregada');//lanza una notificacion de exito
       });
   }
 
-  async takePhoto(){//función para tomar la foto, usa el cameraService y la convierte a base64
-    const photo = await this.cameraService.getPhoto()
-    this.previsualizacion = 'data:image/jpeg;base64,'+ photo.base64String;
+  async takePhoto(){//función para tomar la foto, usa el cameraService y usa la propiedad base64String para pasarselo a previsualización
+    const photo = await this.cameraService.getPhoto();
+    this.previsualizacion = 'data:image/jpeg;base64,'+ photo.base64String; //hace que sea un webViewPath
     this.IsThereAPhoto = true;
   }
 

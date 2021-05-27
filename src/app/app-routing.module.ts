@@ -7,22 +7,17 @@ const routes: Routes = [
     loadChildren: () => import('./tabs/tabs.module').then(m => m.TabsPageModule)
   },
   {
-    path: 'modificar-foto/:id',
-    loadChildren: () => import('./modificar-foto/modificar-foto.module').then( m => m.ModificarFotoPageModule)
-  },
-  {
     path: 'agregar-foto',
     loadChildren: () => import('./agregar-foto/agregar-foto.module').then( m => m.AgregarFotoPageModule)
   },
-
   {
     path: 'imagen-completa/:img/:tags/:user',
     loadChildren: () => import('./imagen-completa/imagen-completa.module').then( m => m.ImagenCompletaPageModule)
-  },  {
-    path: 'imagen-modal',
-    loadChildren: () => import('./imagen-modal/imagen-modal.module').then( m => m.ImagenModalPageModule)
   },
-
+  {
+    path: 'imagen-detalle/:img/:titulo/:descrip/:fecha',
+    loadChildren: () => import('./imagen-detalle/imagen-detalle.module').then( m => m.ImagenDetallePageModule)
+  },
 
 ];
 @NgModule({
